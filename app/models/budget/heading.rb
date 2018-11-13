@@ -8,6 +8,7 @@ class Budget
     include Globalizable
 
     belongs_to :group
+    belongs_to :geography
 
     has_many :investments
     has_many :content_blocks
