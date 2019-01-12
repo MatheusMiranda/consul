@@ -44,6 +44,10 @@ class Budget
       investments.empty?
     end
 
+    def whole_name
+      group.budget.name + " - " + name
+    end
+
     private
 
     def generate_slug?
