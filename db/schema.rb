@@ -539,9 +539,10 @@ ActiveRecord::Schema.define(version: 20190205131722) do
 
   create_table "geographies", force: :cascade do |t|
     t.string   "name"
-    t.float    "outline_points", default: [],              array: true
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.text     "outline_points"
+    t.string   "color"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "geozones", force: :cascade do |t|
@@ -1591,6 +1592,7 @@ ActiveRecord::Schema.define(version: 20190205131722) do
   end
 
   add_foreign_key "administrators", "users"
+  add_foreign_key "budget_headings", "geographies"
   add_foreign_key "budget_investments", "communities"
   add_foreign_key "documents", "users"
   add_foreign_key "failed_census_calls", "poll_officers"
