@@ -1,6 +1,6 @@
 class BudgetsController < ApplicationController
-  NEW_YORK_LATITUDE = 40.730610
-  NEW_YORK_LONGITUDE = -73.935242
+  NEW_YORK_LATITUDE = 40.4165
+  NEW_YORK_LONGITUDE = -3.70256
 
   include FeatureFlags
   include BudgetsHelper
@@ -9,7 +9,7 @@ class BudgetsController < ApplicationController
   load_and_authorize_resource
   before_action :set_default_budget_filter, only: :show
   before_action :create_map_Location, only: :index
-  before_action :get_headings_geographies, only: :index
+  before_action :get_geographies_with_active_headings, only: :index
   has_filters %w{not_unfeasible feasible unfeasible unselected selected}, only: :show
 
   respond_to :html, :js
@@ -34,8 +34,8 @@ class BudgetsController < ApplicationController
     @map_location.longitude = NEW_YORK_LONGITUDE
   end
 
-  def get_headings_geographies
-    @headings_geographies = Geography.active_headings_geographies
+  def get_geographies_with_active_headings
+    @headings_geographies = Geography.geographies_with_active_headings
   end
 
 end
