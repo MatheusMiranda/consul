@@ -132,7 +132,7 @@ App.Map =
 
     if addGeographyPolygons
       for i in addGeographyPolygons
-          polygon = createPolygon(i)
+        polygon = createPolygon(i)
 
   toggleMap: ->
       $('.map').toggle()
