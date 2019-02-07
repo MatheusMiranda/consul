@@ -21,12 +21,14 @@ class BudgetsController < ApplicationController
     @geographies_data = Geography.all.map{ |g| {
                           outline_points: g.parsed_outline_points,
                           color: g.color,
-                          heading_id: (@headings_geographies.key?(g.id) ? @headings_geographies[g.id] : nil ) }
+                          heading_id: (@active_geographies.key?(g.id) ?
+                                       @active_geographies[g.id] : nil ) 
+                          }
                         }
   end
 
   def get_geographies_with_active_headings
-    @headings_geographies = Geography.geographies_with_active_headings
+    @active_geographies = Geography.geographies_with_active_headings
   end
 
 end
