@@ -41,16 +41,16 @@ class Admin::GeographiesController < Admin::BaseController
 
   private
 
-    def set_geography
-      @geography = Geography.find(params[:id])
-    end
+  def set_geography
+    @geography = Geography.find(params[:id])
+  end
 
-    def set_headings
-      @headings = Budget::Heading.order('name')
-    end
+  def set_headings
+    @headings = Budget::Heading.order('name')
+  end
 
-    def geography_params
-      params.require(:geography).permit(:name, :color, :geojson, heading_ids: [])
-    end
+  def geography_params
+    params.require(:geography).permit(:name, :color, :geojson, heading_ids: [])
+  end
 
 end
