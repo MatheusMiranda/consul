@@ -1,5 +1,8 @@
 App.Geographies =
 
+  doStuff: ->
+    alert("Triggered")
+
   initialize: ->
     $('.headings-selector option').on "mousedown", (event) ->
       event.preventDefault()
@@ -10,3 +13,9 @@ App.Geographies =
         $(clicked_option).prop('selected', false)
       else if was_selected == false
         $(clicked_option).prop('selected', true)
+
+    timer = null
+    $('#geography_geojson').on "keydown", (event) ->
+      clearTimeout(timer);
+      timer = setTimeout(App.Geographies.doStuff, 1000)
+
