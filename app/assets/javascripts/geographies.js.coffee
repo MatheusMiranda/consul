@@ -1,7 +1,15 @@
 App.Geographies =
 
   doStuff: ->
-    alert("Triggered")
+    $.ajax location.protocol + "//" + location.host + '/preview_polygon',
+      type: 'POST'
+      dataType: 'json'
+      data: { geojson: $("#geography_geojson").val() }
+      success: (data) ->
+        console.log("\n\nDEU BOMMMMMMM\n\n")
+
+  redlightGeojsonField: ->
+    $('#geography_geojson').on "mousedown", (event) ->
 
   initialize: ->
     $('.headings-selector option').on "mousedown", (event) ->
