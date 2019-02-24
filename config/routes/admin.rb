@@ -218,6 +218,7 @@ namespace :admin do
 
   resources :geozones, only: [:index, :new, :create, :edit, :update, :destroy]
   resources :geographies, only: [:index, :new, :create, :edit, :update, :destroy]
+  post '/geographies/preview_polygon', to: 'geographies#preview_polygon'
 
   namespace :site_customization do
     resources :pages, except: [:show] do
