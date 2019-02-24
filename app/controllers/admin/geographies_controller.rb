@@ -1,7 +1,8 @@
 class Admin::GeographiesController < Admin::BaseController
 
-  before_action :set_geography, only: [:show, :edit, :update, :destroy]
+  before_action :set_geography, only: [:show, :edit, :update, :destroy, :set_preview_geography]
   before_action :set_headings, only: [:new, :edit, :update, :create]
+  before_action :set_preview_geography, only: :preview_polygon
 
   respond_to :html, :js
 
@@ -39,6 +40,19 @@ class Admin::GeographiesController < Admin::BaseController
     redirect_to admin_geographies_path, notice: t("admin.geographies.delete.success")
   end
 
+  def preview_polygon
+    geojson_data = params['geojson']
+
+    @preview_geography.geojson = geojson_data
+
+    respond_to do |format|
+      if not @preview_geography.valid?
+        format.js { render 'redlight_geojson_field.js.erb', layout: false, content_type: 'text/javascript'}
+        format.html {}
+      end
+    end
+  end
+
   private
 
   def set_geography
@@ -51,6 +65,10 @@ class Admin::GeographiesController < Admin::BaseController
 
   def geography_params
     params.require(:geography).permit(:name, :color, :geojson, heading_ids: [])
+  end
+
+  def set_preview_geography
+    @preview_geography = Geography.new(name: "Preview Geography", color: "#1c6b93")
   end
 
 end

@@ -11,6 +11,7 @@
 // 09. Map
 // 10. Budgets
 // 11. Newsletters
+// 12. Geographies
 //
 
 // 01. Global styles
@@ -1263,4 +1264,11 @@ table {
       background: none;
     }
   }
+}
+
+// 12. Geographies
+// ---------------
+
+.geography-geojson-field-red-border {
+	border: 1px solid red !important;
 }
