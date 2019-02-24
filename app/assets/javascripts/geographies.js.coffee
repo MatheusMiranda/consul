@@ -2,6 +2,7 @@ App.Geographies =
 
   doStuff: ->
     $.ajax location.protocol + "//" + location.host + '/admin/geographies/preview_polygon',
+      dataType: 'script'
       type: 'POST'
       data: { geojson: $("#geography_geojson").val() }
 
