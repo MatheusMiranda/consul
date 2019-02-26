@@ -11,7 +11,7 @@ class Admin::GeographiesController < Admin::BaseController
   end
 
   def new
-    @geography = Geography.new
+   @geography = Geography.new
   end
 
   def edit
