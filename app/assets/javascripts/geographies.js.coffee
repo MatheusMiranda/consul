@@ -15,7 +15,9 @@ App.Geographies =
     $('#geojson-error-message').removeClass("hide-geojson-error-message")
     $('#geojson-error-message').addClass("show-geojson-error-message")
 
-    $("#geography_geojson").addClass("geography-geojson-field-red-border")
+    $('#geography_geojson').addClass("geography-geojson-field-red-border")
+
+    $('#preview-polygon-map').addClass("hide-preview-polygon-map")
 
   hideGeoJsonErrorAlert: ->
     $('#geojson-error-message').removeClass("show-geojson-error-message")
@@ -40,3 +42,4 @@ App.Geographies =
       timer = setTimeout(App.Geographies.doStuff, 1000)
 
     $('#geojson-error-message').addClass("hide-geojson-error-message")
+    $('#preview-polygon-map').addClass("hide-preview-polygon-map")
