@@ -1338,6 +1338,8 @@ en:
         creating: Create geography
       delete:
         success: Geography successfully deleted
+      form:
+        incorrect_geojson_format: "Incorrect GeoJSON format"
     signature_sheets:
       author: Author
       created_at: Creation date

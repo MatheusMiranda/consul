@@ -35,6 +35,9 @@
   <div class="row">
     <div class="documents small-12 medium-6 large-4 column">
       <%= f.label :geojson, t("admin.geographies.geography.geojson") %>
+      <div id="geojson-error-message">
+        <%= t("admin.geographies.form.incorrect_geojson_format") %>
+      </div>
       <%= f.text_area :geojson, rows: "5", label: false %>
     </div>
   </div>
