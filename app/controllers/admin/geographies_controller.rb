@@ -47,7 +47,7 @@ class Admin::GeographiesController < Admin::BaseController
 
     respond_to do |format|
       if not @preview_geography.valid?
-        format.js { render 'redlight_geojson_field.js.erb', layout: false,
+        format.js { render 'render_preview_map.js.erb', layout: false,
                     content_type: 'text/javascript'}
       end
     end
