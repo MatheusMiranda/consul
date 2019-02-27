@@ -33,6 +33,11 @@ module MapLocationsHelper
                           data: prepare_map_settings(map_location, editable, parent_class,
                                                      investments_coordinates, geographies_data)
     map += map_location_remove_marker(map_location, remove_marker_label) if editable
+
+    puts "FOIIIIIIIIIIIIIi\n\n\n\n\n"
+    puts map
+    puts "FOIIIIIIIIIIIIIi\n\n\n\n\n"
+
     map
   end
 
