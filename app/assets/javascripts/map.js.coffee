@@ -136,7 +136,6 @@ App.Map =
     if addGeographyPolygons
       for i in addGeographyPolygons
         polygon = createPolygon(i)
-        map.fitBounds(polygon.getBounds());
 
   toggleMap: ->
     $(".map").toggle()
