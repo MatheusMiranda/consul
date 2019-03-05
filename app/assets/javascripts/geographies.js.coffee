@@ -1,6 +1,6 @@
 App.Geographies =
 
-  doStuff: ->
+  sendGeojsonData: ->
     geojsonFieldValue = $("#geography_geojson").val()
 
     if geojsonFieldValue != ""
@@ -10,34 +10,24 @@ App.Geographies =
         data: { geojson: $("#geography_geojson").val() }
     else if geojsonFieldValue == ""
       App.Geographies.hideGeoJsonErrorAlert()
+      App.Geographies.hidePreviewMap()
 
   showGeoJsonErrorAlert: ->
     $('#geojson-error-message').removeClass("hide-geojson-error-message")
-    $('#geojson-error-message').addClass("show-geojson-error-message")
-
     $('#geography_geojson').addClass("geography-geojson-field-red-border")
 
   hideGeoJsonErrorAlert: ->
-    $('#geojson-error-message').removeClass("show-geojson-error-message")
     $('#geojson-error-message').addClass("hide-geojson-error-message")
-
     $("#geography_geojson").removeClass("geography-geojson-field-red-border")
 
+  hidePreviewMap: ->
+    $('#new_map_location').remove()
+
   initialize: ->
-    $('.headings-selector option').on "mousedown", (event) ->
-      event.preventDefault()
-      clicked_option = event.target
-      was_selected = $(clicked_option).prop('selected')
-
-      if was_selected == true
-        $(clicked_option).prop('selected', false)
-      else if was_selected == false
-        $(clicked_option).prop('selected', true)
-
     timer = null
     $('#geography_geojson').on "keydown", (event) ->
       clearTimeout(timer);
-      timer = setTimeout(App.Geographies.doStuff, 1000)
+      timer = setTimeout(App.Geographies.sendGeojsonData, 1000)
 
     $('#geojson-error-message').addClass("hide-geojson-error-message")
 
@@ -71,5 +61,5 @@ App.Geographies =
     map              = L.map(element.id).setView(mapCenterLatLng, zoom)
     L.tileLayer(mapTilesProvider, attribution: mapAttribution).addTo map
 
-    addPreviewPolygon previewPolygonData[0]
+    addPreviewPolygon previewPolygonData
 
