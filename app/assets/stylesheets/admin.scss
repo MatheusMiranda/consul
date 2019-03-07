@@ -1277,11 +1277,12 @@ table {
 	display: none;
 }
 
-.show-geojson-error-message {
-	display: block;
-	color: red;
-}
-
 .hide-preview-polygon-map {
 	display: none;
+}
+
+#geojson-error-message {
+  color: red;
+  font-weight: bold;
+  font-size: 14px;
 }

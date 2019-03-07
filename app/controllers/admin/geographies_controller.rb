@@ -46,8 +46,17 @@ class Admin::GeographiesController < Admin::BaseController
     @preview_geography.geojson = geojson_data
 
     respond_to do |format|
-      if not @preview_geography.valid?
+      if @preview_geography.valid?
+        @preview_geography_data = {
+          "outline_points": @preview_geography.parsed_outline_points,
+          "color": @preview_geography.color,
+          "heading_id": nil
+        }
+
         format.js { render 'render_preview_map.js.erb', layout: false,
+                    content_type: 'text/javascript'}
+      else
+        format.js { render 'redlight_geojson_field.js.erb', layout: false,
                     content_type: 'text/javascript'}
       end
     end
