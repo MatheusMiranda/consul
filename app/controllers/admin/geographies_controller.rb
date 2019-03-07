@@ -42,6 +42,7 @@ class Admin::GeographiesController < Admin::BaseController
 
   def preview_polygon
     geojson_data = params['geojson']
+    color = params['color']
 
     @preview_geography.geojson = geojson_data
 
@@ -49,7 +50,7 @@ class Admin::GeographiesController < Admin::BaseController
       if @preview_geography.valid?
         @preview_geography_data = {
           "outline_points": @preview_geography.parsed_outline_points,
-          "color": @preview_geography.color,
+          "color": color,
           "heading_id": nil
         }
 
@@ -77,7 +78,7 @@ class Admin::GeographiesController < Admin::BaseController
   end
 
   def set_preview_geography
-    @preview_geography = Geography.new(name: "Preview Geography", color: "#1c6b93")
+    @preview_geography = Geography.new(name: "Preview Geography", color: "#000000")
   end
 
 end
