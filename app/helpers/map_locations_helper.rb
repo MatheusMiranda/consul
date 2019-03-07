@@ -26,6 +26,7 @@ module MapLocationsHelper
 
   def render_map(map_location, parent_class, editable, remove_marker_label,
                  investments_coordinates=nil, geographies_data=nil)
+
     map_location = MapLocation.new if map_location.nil?
     map = content_tag_for :div,
                           map_location,

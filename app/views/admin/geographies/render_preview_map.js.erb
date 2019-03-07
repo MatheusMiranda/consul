@@ -1,3 +1,3 @@
-$('#preview-polygon-map').html('<%= render_map(nil, "", false, nil, [], {"outline_points":[[40.9120207402297,-73.8647739975733],[40.9515163823567,-73.8730522708028],[40.9315163823567,-73.8830522708028]],"color":"#c93030","heading_id":10}) %>');
+$('#preview-polygon-map').html('<%= render_map(nil, "", false, nil, [], @preview_geography_data) %>');
 console.log($('#preview-polygon-map'));
 App.Geographies.initializePreviewMap();
