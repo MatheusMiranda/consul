@@ -2,12 +2,13 @@ App.Geographies =
 
   sendGeojsonData: ->
     geojsonFieldValue = $("#geography_geojson").val()
+    colorFieldValue = $("#geography_color").val()
 
     if geojsonFieldValue != ""
       $.ajax location.protocol + "//" + location.host + '/admin/geographies/preview_polygon',
         dataType: 'script'
         type: 'POST'
-        data: { geojson: $("#geography_geojson").val() }
+        data: { geojson: geojsonFieldValue, color: colorFieldValue }
     else if geojsonFieldValue == ""
       App.Geographies.hideGeoJsonErrorAlert()
       App.Geographies.hidePreviewMap()
@@ -28,6 +29,9 @@ App.Geographies =
     $('#geography_geojson').on "keydown", (event) ->
       clearTimeout(timer);
       timer = setTimeout(App.Geographies.sendGeojsonData, 1000)
+
+    $('#geography_color').on 'change', ->
+       App.Geographies.sendGeojsonData()
 
     $('#geojson-error-message').addClass("hide-geojson-error-message")
 
