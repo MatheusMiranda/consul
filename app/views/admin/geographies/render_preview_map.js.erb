@@ -1,3 +1,3 @@
 $('#preview-polygon-map').html('<%= render_map(nil, "", false, nil, [], @preview_geography_data) %>');
-console.log($('#preview-polygon-map'));
+App.Geographies.hideGeoJsonErrorAlert();
 App.Geographies.initializePreviewMap();

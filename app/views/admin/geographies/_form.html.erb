@@ -12,28 +12,28 @@
   <% end %>
 
   <div class="row">
-    <div class="small-12 medium-6 large-4 column">
+    <div class="small-12 medium-8 large-5 column">
       <%= f.label :name, t("admin.geographies.geography.name") %>
       <%= f.text_field :name, label: false %>
     </div>
   </div>
 
   <div class="row">
-    <div class="small-12 medium-6 large-4 column">
+    <div class="small-12 medium-8 large-5 column">
       <%= f.label :heading_ids, t("admin.geographies.geography.related_headings") %>
       <%= f.collection_select :heading_ids, @headings, :id, :whole_name, {label: false}, { class: "headings-selector", multiple: true } %>
     </div>
   </div>
 
   <div class="row">
-    <div class="small-12 medium-6 large-4 column">
+    <div class="small-12 medium-8 large-5 column">
       <%= f.label :color, t("admin.geographies.geography.color") %>
       <%= f.color_field :color, {label: false} %>
     </div>
   </div>
 
   <div class="row">
-    <div class="documents small-12 medium-6 large-4 column">
+    <div class="documents small-12 medium-8 large-5 column">
       <%= f.label :geojson, t("admin.geographies.geography.geojson") %>
       <div id="geojson-error-message">
         <%= t("admin.geographies.form.incorrect_geojson_format") %>
@@ -43,7 +43,7 @@
   </div>
 
   <div class="row">
-    <div id="preview-polygon-map">
+    <div id="preview-polygon-map" class="documents small-12 medium-8 large-5 column">
     </div>
   </div>
 

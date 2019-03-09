@@ -16,6 +16,8 @@ App.Geographies =
   showGeoJsonErrorAlert: ->
     $('#geojson-error-message').removeClass("hide-geojson-error-message")
     $('#geography_geojson').addClass("geography-geojson-field-red-border")
+    $('#preview-polygon-map').removeClass("preview-map")
+    App.Geographies.hidePreviewMap()
 
   hideGeoJsonErrorAlert: ->
     $('#geojson-error-message').addClass("hide-geojson-error-message")
@@ -35,7 +37,11 @@ App.Geographies =
 
     $('#geojson-error-message').addClass("hide-geojson-error-message")
 
+    App.Geographies.sendGeojsonData()
+
   initializePreviewMap: ->
+    $('#preview-polygon-map').addClass("preview-map")
+
     maps = $('*[data-map]')
 
     if maps.length > 0
