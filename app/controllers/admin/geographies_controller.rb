@@ -46,7 +46,7 @@ class Admin::GeographiesController < Admin::BaseController
     end
 
     def set_headings
-      @headings = Budget::Heading.order(:name)
+      @headings = Budget::Heading.order('name')
     end
 
     def geography_params
