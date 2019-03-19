@@ -42,7 +42,7 @@ module PollsHelper
   end
 
   def poll_voter_token(poll, user)
-    Poll::Voter.where(poll: poll, user: user, origin: "web").first&.token || ''
+    Poll::Voter.where(poll: poll, user: user, origin: "web").first&.token || ""
   end
 
   def voted_before_sign_in(question)
@@ -63,5 +63,9 @@ module PollsHelper
 
   def info_menu?
     controller_name == "polls" && action_name == "show"
+  end
+
+  def show_polls_description?
+    @active_poll.present? && @current_filter == "current"
   end
 end

@@ -1,12 +1,12 @@
 module BudgetsHelper
 
   def show_links_to_budget_investments(budget)
-    ['balloting', 'reviewing_ballots', 'finished'].include? budget.phase
+    ["balloting", "reviewing_ballots", "finished"].include? budget.phase
   end
 
   def heading_name_and_price_html(heading, budget)
     content_tag :div do
-      concat(heading.name + ' ')
+      concat(heading.name + " ")
       concat(content_tag(:span, budget.formatted_heading_price(heading)))
     end
   end
@@ -89,5 +89,11 @@ module BudgetsHelper
     else
       t("admin.budgets.winners.recalculate")
     end
+  end
+
+  def display_support_alert?(investment)
+    current_user &&
+    !current_user.voted_in_group?(investment.group) &&
+    investment.group.headings.count > 1
   end
 end

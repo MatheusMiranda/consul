@@ -1,15 +1,15 @@
 App.Map =
 
   initialize: ->
-    maps = $('*[data-map]')
+    maps = $("*[data-map]")
 
     if maps.length > 0
       $.each maps, (index, map) ->
         App.Map.initializeMap map
 
-    $('.js-toggle-map').on
-        click: ->
-          App.Map.toggleMap()
+    $(".js-toggle-map").on
+      click: ->
+        App.Map.toggleMap()
 
   initializeMap: (element) ->
     App.Map.cleanInvestmentCoordinates(element)
@@ -30,16 +30,17 @@ App.Map =
     editable                 = $(element).data('marker-editable')
     marker                   = null;
     markerIcon               = L.divIcon(
-                                  className: 'map-marker'
-                                  iconSize:     [30, 30]
-                                  iconAnchor:   [15, 40]
-                                  html: '<div class="map-icon"></div>')
+      className: "map-marker"
+      iconSize:     [30, 30]
+      iconAnchor:   [15, 40]
+      html: '<div class="map-icon"></div>'
+    )
 
     createMarker = (latitude, longitude) ->
       markerLatLng  = new (L.LatLng)(latitude, longitude)
       marker  = L.marker(markerLatLng, { icon: markerIcon, draggable: editable })
       if editable
-        marker.on 'dragend', updateFormfields
+        marker.on "dragend", updateFormfields
       marker.addTo(map)
       return marker
 
@@ -59,7 +60,7 @@ App.Map =
       e.preventDefault()
       if marker
         map.removeLayer(marker)
-        marker = null;
+        marker = null
       clearFormfields()
       return
 
@@ -79,17 +80,17 @@ App.Map =
       return
 
     clearFormfields = ->
-      $(latitudeInputSelector).val ''
-      $(longitudeInputSelector).val ''
-      $(zoomInputSelector).val ''
+      $(latitudeInputSelector).val ""
+      $(longitudeInputSelector).val ""
+      $(zoomInputSelector).val ""
       return
 
     openMarkerPopup = (e) ->
       marker = e.target
 
-      $.ajax '/investments/' + marker.options['id'] + '/json_data',
-        type: 'GET'
-        dataType: 'json'
+      $.ajax "/investments/#{marker.options["id"]}/json_data",
+        type: "GET"
+        dataType: "json"
         success: (data) ->
           e.target.bindPopup(getPopupContent(data)).openPopup()
 
@@ -121,31 +122,31 @@ App.Map =
       marker  = createMarker(markerLatitude, markerLongitude)
 
     if editable
-      $(removeMarkerSelector).on 'click', removeMarker
-      map.on    'zoomend', updateFormfields
-      map.on    'click',   moveOrPlaceMarker
+      $(removeMarkerSelector).on "click", removeMarker
+      map.on    "zoomend", updateFormfields
+      map.on    "click",   moveOrPlaceMarker
 
     if addMarkerInvestments
       for i in addMarkerInvestments
         if App.Map.validCoordinates(i)
           marker = createMarker(i.lat, i.long)
-          marker.options['id'] = i.investment_id
+          marker.options["id"] = i.investment_id
 
-          marker.on 'click', openMarkerPopup
+          marker.on "click", openMarkerPopup
 
     if addGeographyPolygons
       for i in addGeographyPolygons
         polygon = createPolygon(i)
 
   toggleMap: ->
-      $('.map').toggle()
-      $('.js-location-map-remove-marker').toggle()
+    $(".map").toggle()
+    $(".js-location-map-remove-marker").toggle()
 
   cleanInvestmentCoordinates: (element) ->
-    markers = $(element).attr('data-marker-investments-coordinates')
+    markers = $(element).attr("data-marker-investments-coordinates")
     if markers?
       clean_markers = markers.replace(/-?(\*+)/g, null)
-      $(element).attr('data-marker-investments-coordinates', clean_markers)
+      $(element).attr("data-marker-investments-coordinates", clean_markers)
 
   validCoordinates: (coordinates) ->
     App.Map.isNumeric(coordinates.lat) && App.Map.isNumeric(coordinates.long)
